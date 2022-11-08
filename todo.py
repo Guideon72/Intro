@@ -7,17 +7,10 @@ taskList = ()
 
 
 def getTask(task):
-    retry = True
-    try:
-        while retry:
-            if re.match(pattern, task):
-                retry = False
-                return task
-            else:
-                print("Sorry, that is not valid")
-                break
-    except Exception as e:
-        return e
+    if re.match(pattern, task):
+        return task
+    else:
+        return str("Sorry, I don't recognize that task. Please try again")
 
 
 def main():
