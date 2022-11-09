@@ -18,7 +18,8 @@ taskList = []
 def main():
     repeat = True
     while repeat:
-        nTask = input('Please enter your new task here: ')
+        nTask = input(
+            'Please enter your new task here: (Type "quit" to exit) ')
         if nTask == "quit":
             repeat = False
             break
