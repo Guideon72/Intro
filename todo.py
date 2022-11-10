@@ -49,14 +49,10 @@ def main():
                         else:
                             pass  # Todo: Don't do this for production code
                 case "complete":
-                    cTask = input(
-                        "Enter the number of the task you want to complete: ")
-                    for item in enumerate(taskList, 1):
-                        if item[0] == int(cTask):
-                            # TODO: Make a y/n and do not remove item if no
-                            print(F"You want to complete {item[1]}?")
-                            taskList.remove(item[1])
-                            print(F"{item[1]} is Done.")
+                    cTask = int(input(
+                        "Enter the number of the task you want to complete: "))
+                    completed = taskList.pop(cTask-1)
+                    print(F"{completed} is done.")
                 case _:
                     print("Please type, either, 'Add', 'See' or 'Exit")
 
