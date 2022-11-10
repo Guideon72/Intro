@@ -38,7 +38,7 @@ def main():
                 case "see":
                     for t in taskList:
                         print(t)
-                case "edit":
+                case "edit":  # Using first input to find element, second input to update list
                     option = input("Enter the task you want to edit: ")
                     for i in range(len(taskList)):
                         if taskList[i].lower() == option.lower():
@@ -46,7 +46,7 @@ def main():
                                 F"What would you like to replace {taskList[i]} with? ")
                             taskList[i] = nt.title()
                 case _:
-                    print("Please type, either, 'Add' or 'See'")
+                    print("Please type, either, 'Add', 'See' or 'Exit")
 
 
 
