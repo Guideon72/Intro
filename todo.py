@@ -24,9 +24,9 @@ def main():
     repeat = True
     while repeat:
         uAction = input(
-            '"Add" a task, "See" your todo list or Edit a task? (Type "exit" to quit) ').strip().lower()
+            '"Add", "See", "Edit", "Complete"? (Type "exit" to quit) ').strip().lower()
         # Checking exit here instead of in match case to provide an earlier 'out' TODO: remove this and reorder case block w/ exit at top
-        if uAction == "exit":
+        if uAction.lower() == "exit" or uAction.lower() == "quit":
             repeat = False
             break
         else:
@@ -35,16 +35,28 @@ def main():
                     nTask = input("Please enter your new task now: ")
                     # refactor validation to something less obnoxious
                     taskList.append(nTask.title())
-                case "see":
-                    for t in taskList:
-                        print(t)
+                case "see" | "show":
+                    for i, t in enumerate(taskList, 1):
+                        print(f"{i}: {t}")
                 case "edit":  # Using first input to find element, second input to update list
-                    option = input("Enter the task you want to edit: ")
-                    for i in range(len(taskList)):
-                        if taskList[i].lower() == option.lower():
-                            nt = input(
-                                F"What would you like to replace {taskList[i]} with? ")
-                            taskList[i] = nt.title()
+                    eTask = input(
+                        "Enter number of the task you want to edit: ")
+                    for item in enumerate(taskList, 1):
+                        if item[0] == int(eTask):
+                            ntask = input(
+                                F"What would you like to change {item[1]} to? ").title()
+                            taskList[item[0]-1] = ntask
+                        else:
+                            pass  # Todo: Don't do this for production code
+                case "complete":
+                    cTask = input(
+                        "Enter the number of the task you want to complete: ")
+                    for item in enumerate(taskList, 1):
+                        if item[0] == int(cTask):
+                            # TODO: Make a y/n and do not remove item if no
+                            print(F"You want to complete {item[1]}?")
+                            taskList.remove(item[1])
+                            print(F"{item[1]} is Done.")
                 case _:
                     print("Please type, either, 'Add', 'See' or 'Exit")
 
