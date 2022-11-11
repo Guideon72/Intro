@@ -1,24 +1,4 @@
 """A basic ToDo list application written in Python 3.10"""
-import re
-
-# task = input('Please enter your new task here: ')
-# pattern = "^[A-Za-z0-9', ]*$"
-taskList = []
-
-
-# def getTask(task):
-#     if re.match(pattern, task):
-#         global taskList
-#         taskList.append(task)
-#         # return taskList
-#     else:
-#         return str("Sorry, I don't recognize that task. Please try again")
-#
-# def getTask(task):
-#    if re.match(pattern, task):
-#         return task
-#     return ("I'm sorry, that is not a valid task")
-
 
 def main():
     repeat = True
@@ -33,11 +13,15 @@ def main():
             match uAction:
                 case "add":
                     nTask = input("Please enter your new task now: ")
-                    # refactor validation to something less obnoxious
-                    taskList.append(nTask.title())
+                    with open("./data/tl.txt", "r") as tl:  # TODO: Make this work with pathlib
+                        tasks = tl.readlines()
+                    tasks.append(nTask.capitalize() + "\n")
+                    with open("./data/tl.txt", "w") as tl:
+                        tl.writelines(tasks)
                 case "see" | "show":
-                    for i, t in enumerate(taskList, 1):
-                        print(f"{i}: {t}")
+                    with open("./data/tl.txt", "r") as tl:
+                        for i, t in enumerate(tl, 1):
+                            print(f"{i}: {t}")
                 case "edit":  # Using first input to find element, second input to update list
                     eTask = input(
                         "Enter number of the task you want to edit: ")
@@ -57,7 +41,24 @@ def main():
                     print("Please type, either, 'Add', 'See' or 'Exit")
 
 
-
-
 if __name__ == '__main__':
     main()
+
+# """_________________________________________________________________________________"""
+# task = input('Please enter your new task here: ')
+# pattern = "^[A-Za-z0-9', ]*$"
+taskList = []
+
+
+# def getTask(task):
+#     if re.match(pattern, task):
+#         global taskList
+#         taskList.append(task)
+#         # return taskList
+#     else:
+#         return str("Sorry, I don't recognize that task. Please try again")
+#
+# def getTask(task):
+#    if re.match(pattern, task):
+#         return task
+#     return ("I'm sorry, that is not a valid task")
