@@ -1,8 +1,8 @@
-from datetime import date, datetime
+from datetime import datetime
 from pathlib import Path
 
 """Building out variables"""
-today = input("Please enter today's date (yyyy:mm:dd): ")
+today = datetime.today().date()
 # print(today)
 mood = input("Please enter your mood rating for today (1-10): ")
 # print(mood)
@@ -18,8 +18,10 @@ fileName = Path(fileDir / F"{today}.txt")
 fileName.touch(exist_ok=True)
 
 
-"""Doing shit with all of the above"""
-
+"""Doing things with all of the above"""
+with open(fileName, "w") as todayFile:
+    todayFile.write(F"My mood rating today is: {mood} \n")
+    todayFile.write(F"My thoughts about today are: {feels}")
 
 def main():
     pass
