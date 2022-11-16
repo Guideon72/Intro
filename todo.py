@@ -49,10 +49,17 @@ def main():
                         tl.writelines(tasks)
 
                 case "complete":
+                    with open("./data/tl.txt", "r") as tl:
+                        tasks = tl.readlines()
+                    for i, t in enumerate(tasks, 1):
+                        t = t.strip('\n')
+                        print(f"{i}: {t}")
                     cTask = int(input(
                         "Enter the number of the task you want to complete: "))
-                    completed = taskList.pop(cTask-1)
-                    print(F"{completed} is done.")
+                    completed = tasks.pop(cTask - 1).strip("\n")
+                    print(F"'{completed}' is done.")
+                    with open("./data/tl.txt", "w") as tl:
+                        tl.writelines(tasks)
 
                 case _:
                     print("Please type, either, 'Add', 'See' or 'Exit")
