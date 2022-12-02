@@ -1,6 +1,7 @@
 """A basic ToDo list application written in Python 3.10"""
 
 import todo_functions as tdf
+import time
 
 
 def main():
@@ -8,6 +9,7 @@ def main():
      and maintain a simple task list
      """
     while True:
+        print(time.strftime("%c"))
         uAction = input(
             '"Add", "See", "Edit", "Complete"? ("Exit" to quit) ').strip().lower()
 
